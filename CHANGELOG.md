@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/syaghoubi00/action-build-ansible-collection/compare/v1.1.3...v1.1.4) (2025-01-13)
+
+
+### Bug Fixes
+
+* use yq raw output to remove quotes ([7835ef9](https://github.com/syaghoubi00/action-build-ansible-collection/commit/7835ef9a8367968a9ca287cd93ddf9b4d88c13b2))
+
 ## [1.1.3](https://github.com/syaghoubi00/action-build-ansible-collection/compare/v1.1.2...v1.1.3) (2025-01-13)
 
 
