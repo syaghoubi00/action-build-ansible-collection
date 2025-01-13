@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/syaghoubi00/action-build-ansible-collection/compare/v1.0.1...v1.1.0) (2025-01-13)
+
+
+### Features
+
+* add error checking for dependency path ([84a2bee](https://github.com/syaghoubi00/action-build-ansible-collection/commit/84a2beea435b5f1baeb31e2850a4f364462bdb9e))
+
 ## [1.0.1](https://github.com/syaghoubi00/action-build-ansible-collection/compare/v1.0.0...v1.0.1) (2025-01-13)
 
 
