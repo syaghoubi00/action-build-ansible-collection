@@ -1,0 +1,93 @@
+name: "Build Ansible Collection"
+author: "Sebastian Yaghoubi"
+description: "Build an Ansible collection"
+branding:
+  color: "red"
+  icon: "package"
+
+inputs:
+  collection-path:
+    description: "Path to the collection directory"
+    required: false
+  galaxy-file:
+    default: "galaxy.yml"
+    description: "Path to galaxy.yml file"
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+        cache: "pip"
+        cache-dependency-path: "requirements.txt"
+
+    - name: Install dependencies
+      shell: bash
+      run: python -m pip install -r ${{ github.action_path }}/requirements.txt
+
+    - name: Validate galaxy.yml
+      shell: bash
+      run: |
+        if [[ ! -f "${{ inputs.galaxy-file }}" ]]; then
+          echo "::error::Galaxy metadata not found at ${{ inputs.galaxy-file }}"
+          exit 1
+        fi
+
+        required_fields=("namespace" "name" "version")
+        for field in "${required_fields[@]}"; do
+          value=$(yq eval ".$field" "${{ inputs.galaxy-file }}")
+          if [[ -z "$value" ]]; then
+            echo "::error::Required field '$field' is missing in galaxy.yml"
+            exit 1
+          fi
+        done
+
+    - name: Build collection
+      id: build
+      shell: bash
+      run: |
+        # Read collection details using safer evaluation
+        NAMESPACE=$(yq eval '.namespace' "${{ inputs.galaxy-file }}")
+        NAME=$(yq eval '.name' "${{ inputs.galaxy-file }}")
+        VERSION=$(yq eval '.version' "${{ inputs.galaxy-file }}")
+
+        # Set error handling
+        set -euo pipefail
+
+        # Build the collection
+        if [[ -n "${{ inputs.collection-path }}" ]]; then
+          ansible-galaxy collection build "${{ inputs.collection-path }}"
+        else
+          ansible-galaxy collection build
+        fi
+
+        # Verify build artifact
+        ARTIFACT="${NAMESPACE}-${NAME}-${VERSION}.tar.gz"
+        if [[ ! -f "$ARTIFACT" ]]; then
+          echo "::error::Build failed - artifact not created: $ARTIFACT"
+          exit 1
+        fi
+
+        {
+          echo "artifact-filename=${ARTIFACT}"
+          echo "collection-name=${NAME}"
+          echo "collection-namespace=${NAMESPACE}"
+          echo "collection-version=${VERSION}"
+        } >> "$GITHUB_OUTPUT"
+
+outputs:
+  artifact-filename:
+    description: "The filename of the built collection artifact"
+    value: ${{ steps.build.outputs.artifact-filename }}
+  collection-name:
+    description: "The name of the built collection"
+    value: ${{ steps.build.outputs.collection-name }}
+  collection-namespace:
+    description: "The namespace of the built collection"
+    value: ${{ steps.build.outputs.collection-namespace }}
+  collection-version:
+    description: "The version of the built collection"
+    value: ${{ steps.build.outputs.collection-version }}
