@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5](https://github.com/syaghoubi00/action-build-ansible-collection/compare/v1.1.4...v1.1.5) (2025-01-13)
+
+
+### Bug Fixes
+
+* use ansible-core to reduce package size ([34f6b78](https://github.com/syaghoubi00/action-build-ansible-collection/commit/34f6b78f2726f5b491cfd5dede922917f98a8783))
+
 ## [1.1.4](https://github.com/syaghoubi00/action-build-ansible-collection/compare/v1.1.3...v1.1.4) (2025-01-13)
 
 
