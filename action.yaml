@@ -50,9 +50,9 @@ runs:
       shell: bash
       run: |
         # Read collection details using safer evaluation
-        NAMESPACE=$(yq '.namespace' "${{ inputs.galaxy-file }}")
-        NAME=$(yq '.name' "${{ inputs.galaxy-file }}")
-        VERSION=$(yq '.version' "${{ inputs.galaxy-file }}")
+        NAMESPACE=$(yq -r '.namespace' "${{ inputs.galaxy-file }}")
+        NAME=$(yq -r '.name' "${{ inputs.galaxy-file }}")
+        VERSION=$(yq -r '.version' "${{ inputs.galaxy-file }}")
 
         # Set error handling
         set -euo pipefail
