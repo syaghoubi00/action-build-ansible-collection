@@ -38,7 +38,7 @@ runs:
 
         required_fields=("namespace" "name" "version")
         for field in "${required_fields[@]}"; do
-          value=$(yq eval ".$field" "${{ inputs.galaxy-file }}")
+          value=$(yq ".$field" "${{ inputs.galaxy-file }}")
           if [[ -z "$value" ]]; then
             echo "::error::Required field '$field' is missing in galaxy.yml"
             exit 1
@@ -50,9 +50,9 @@ runs:
       shell: bash
       run: |
         # Read collection details using safer evaluation
-        NAMESPACE=$(yq eval '.namespace' "${{ inputs.galaxy-file }}")
-        NAME=$(yq eval '.name' "${{ inputs.galaxy-file }}")
-        VERSION=$(yq eval '.version' "${{ inputs.galaxy-file }}")
+        NAMESPACE=$(yq '.namespace' "${{ inputs.galaxy-file }}")
+        NAME=$(yq '.name' "${{ inputs.galaxy-file }}")
+        VERSION=$(yq '.version' "${{ inputs.galaxy-file }}")
 
         # Set error handling
         set -euo pipefail
