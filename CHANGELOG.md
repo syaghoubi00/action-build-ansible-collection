@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/syaghoubi00/action-build-ansible-collection/compare/v1.1.2...v1.1.3) (2025-01-13)
+
+
+### Bug Fixes
+
+* use correct yq command ([de38d91](https://github.com/syaghoubi00/action-build-ansible-collection/commit/de38d91514e58e625351e4ce14722f3a3ef24bce))
+
 ## [1.1.2](https://github.com/syaghoubi00/action-build-ansible-collection/compare/v1.1.1...v1.1.2) (2025-01-13)
 
 
