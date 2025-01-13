@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/syaghoubi00/action-build-ansible-collection/compare/v1.1.1...v1.1.2) (2025-01-13)
+
+
+### Bug Fixes
+
+* remove caching ([45191a5](https://github.com/syaghoubi00/action-build-ansible-collection/commit/45191a5e8dc7f366fad9d46e29b7c27fb5985a8b))
+
 ## [1.1.1](https://github.com/syaghoubi00/action-build-ansible-collection/compare/v1.0.0...v1.1.1) (2025-01-13)
 
 
