@@ -26,7 +26,7 @@ runs:
       shell: bash
       run: |
         echo "Installing Ansible and yq"
-        python -m pip install ansible yq
+        python -m pip install ansible-core yq
 
     - name: Validate galaxy.yml
       shell: bash
