@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0](https://github.com/syaghoubi00/action-build-ansible-collection/compare/v1.1.0...v1.0.0) (2025-01-13)
+
+
+### Miscellaneous Chores
+
+* release 1.0.0 ([73ced2a](https://github.com/syaghoubi00/action-build-ansible-collection/commit/73ced2ac27a66eb540c2bcee71a2f83db60a29a4))
+
 ## [1.1.0](https://github.com/syaghoubi00/action-build-ansible-collection/compare/v1.0.1...v1.1.0) (2025-01-13)
 
 
