@@ -21,19 +21,12 @@ runs:
       uses: actions/setup-python@v5
       with:
         python-version: "3.x"
-        cache: "pip"
-        cache-dependency-path: ${{ github.action_path }}/requirements.txt
 
     - name: Install dependencies
       shell: bash
       run: |
-        echo "Installing dependencies from action's requirements.txt"
-        if [[ ! -f "${{ github.action_path }}/requirements.txt" ]]; then
-          echo "::error::Requirements file not found at ${{ github.action_path }}/requirements.txt"
-          exit 1
-        fi
-
-        python -m pip install -r ${{ github.action_path }}/requirements.txt
+        echo "Installing Ansible and yq"
+        python -m pip install ansible yq
 
     - name: Validate galaxy.yml
       shell: bash
