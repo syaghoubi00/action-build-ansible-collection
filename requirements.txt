@@ -1,2 +1,2 @@
-ansible-core==2.16.12
+ansible-core==2.18.1
 yq==3.4.3
